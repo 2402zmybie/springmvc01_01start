@@ -31,7 +31,14 @@ public class AnnoController {
 
     @GetMapping("/testPathVariable/{id}")
     public String testPathVariable(@PathVariable("id") String id) {
-        System.out.println("PathVariable......" + id);   //username=aa&age=122
+        System.out.println("PathVariable......" + id);
+        return "success";
+    }
+
+
+    @GetMapping("/testRequestHeader")
+    public String testRequestHeader(@RequestHeader(value = "Accept") String header) {
+        System.out.println(header);  //text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8
         return "success";
     }
 }
