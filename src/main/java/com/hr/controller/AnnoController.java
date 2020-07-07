@@ -41,4 +41,15 @@ public class AnnoController {
         System.out.println(header);  //text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8
         return "success";
     }
+
+    /**
+     * 获取Cookie的值
+     * 用浏览器发请求, 服务器会存储一个session的空间, 会通过cookie的形式把session写回来(JSESSIONID)
+     * @return
+     */
+    @GetMapping("/testCookieValue")
+    public String testCookieValue(@CookieValue(value = "JSESSIONID") String cookieValue) {
+        System.out.println(cookieValue);  //CEFA2FF8B9675916A64350B4F7DCC61B
+        return "success";
+    }
 }
