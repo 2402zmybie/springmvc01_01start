@@ -1,9 +1,7 @@
 package com.hr.controller;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequestMapping("/anno")
@@ -17,6 +15,17 @@ public class AnnoController {
     @GetMapping("/testRequestParam")
     public String testRequestParam(@RequestParam(value = "username",required = true) String username) {
         System.out.println("传递参数username----" + username);
+        return "success";
+    }
+
+    /**
+     * RequestBody:
+     *  作用: 用于获取请求体内容, 直接使用得到是key=value&key=value结构的数据,get请求方式不适用
+     *  属性: required: 是否必须有请求体,默认值是true. 当取值为true时,get请求方式会报错. 如果取值为false,get请求得到是null
+     */
+    @PostMapping("/testRequestBody")
+    public String testRequestBody(@RequestBody String str) {
+        System.out.println(str);   //username=aa&age=122
         return "success";
     }
 }
