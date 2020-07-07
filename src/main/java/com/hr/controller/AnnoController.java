@@ -1,7 +1,11 @@
 package com.hr.controller;
 
+import com.hr.domain.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.Date;
+import java.util.Map;
 
 @Controller
 @RequestMapping("/anno")
@@ -50,6 +54,71 @@ public class AnnoController {
     @GetMapping("/testCookieValue")
     public String testCookieValue(@CookieValue(value = "JSESSIONID") String cookieValue) {
         System.out.println(cookieValue);  //CEFA2FF8B9675916A64350B4F7DCC61B
+        return "success";
+    }
+
+
+    /**
+     * ModelAttribute:
+     *  作用: 该注解是SpringMVC4.3版本以后新加入的, 它可以用于修饰方法和参数
+     *       出现在方法上,表示当前方法会在控制器的方法执行之前,先执行.它可以修饰没有返回值的方法,也可以修饰有具体返回值的方法
+     *       出现在参数上, 获取指定的数据给参数赋值
+     *  属性:
+     *      value: 用于获取数据的key, key可以是POJO的属性名称,也可以是map结构的key
+     *  应用场景:
+     *      当表单提交数据不是完整的实体类数据时, 保证没有提交数据的字段使用数据库对象原来的数据
+     *      例如:
+     *          我们在编辑一个用户时,用户有一个创建信息字段,该字段的值是不允许被修改的, 在提交表单数据是肯定没有此字段的内容
+     *          ,一旦更新会把该字段内容为null, 此时就可以使用此注解解决问题
+     */
+//    @PostMapping("/testModelAttribute")
+//    public String testModelAttribute(User user) {
+//        System.out.println("testModelAttribute执行了.....");
+//        System.out.println(user);
+//        return "success";
+//    }
+
+
+    /**
+     * 方法上的ModelAttribute (有返回值的ModelAttribute)
+     *   会在anno.jsp中任意一个请求之前执行, 此处演示testModelAttribute这个请求
+     */
+//    @ModelAttribute
+//    public User showUser(String uname,Integer uage) {
+//        System.out.println("showUser执行了...");
+//        //通过用户查询数据库
+//        User user = new User();
+//        user.setUname(uname);
+//        user.setUage(uage);
+//        user.setDate(new Date());
+//        return user;
+//    }
+
+    /**
+     * 方法上的ModelAttribute (没有返回值的ModelAttribute)
+     * @param uname
+     * @param uage
+     * @return
+     */
+    @ModelAttribute
+    public void showUser(String uname, Integer uage, Map<String,User> map) {
+        System.out.println("showUser执行了...");
+        //通过用户查询数据库
+        User user = new User();
+        user.setUname(uname);
+        user.setUage(uage);
+        user.setDate(new Date());
+        map.put("abc",user);
+    }
+
+    /**
+     * 参数上的ModelAttribute
+     * @return
+     */
+    @PostMapping("/testModelAttribute")
+    public String testModelAttribute(@ModelAttribute("abc") User user) {
+        System.out.println("testModelAttribute执行了.....");
+        System.out.println(user);
         return "success";
     }
 }

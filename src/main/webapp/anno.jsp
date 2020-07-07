@@ -40,5 +40,16 @@
     <br>
     <a href="anno/testCookieValue">testCookieValue</a>
 
+
+    <br/>
+    <br/>
+    <br/>
+
+    <form method="post" action="anno/testModelAttribute">
+        姓名:<input name="uname" type="text">
+        年龄:<input name="uage" type="text">
+        <input type="submit" value="testModelAttribute">
+    </form>
+
 </body>
 </html>

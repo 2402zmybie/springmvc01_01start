@@ -9,6 +9,10 @@ public class User implements Serializable {
     private Integer uage;
     private Date date;
 
+
+    public User() {
+    }
+
     public Date getDate() {
         return date;
     }
