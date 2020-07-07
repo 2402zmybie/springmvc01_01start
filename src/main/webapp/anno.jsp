@@ -51,5 +51,14 @@
         <input type="submit" value="testModelAttribute">
     </form>
 
+    <br/>
+    <br/>
+    <br/>
+    <a href="anno/testSessionAttributes">testSessionAttributes</a>
+    <a href="anno/getSessionAttributes">取出SessionAttributes中存放的msg的值</a>
+    <a href="anno/deleteSessionAttributes">清除session</a>
+
+
+
 </body>
 </html>

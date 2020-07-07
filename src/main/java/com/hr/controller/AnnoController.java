@@ -2,13 +2,17 @@ package com.hr.controller;
 
 import com.hr.domain.User;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.support.SessionStatus;
 
 import java.util.Date;
 import java.util.Map;
 
 @Controller
 @RequestMapping("/anno")
+@SessionAttributes(value = {"msg"})  //把msg=model的msg存入到session域中一份
 public class AnnoController {
 
     /**
@@ -119,6 +123,43 @@ public class AnnoController {
     public String testModelAttribute(@ModelAttribute("abc") User user) {
         System.out.println("testModelAttribute执行了.....");
         System.out.println(user);
+        return "success";
+    }
+
+    /**
+     * SessionAttributes: 这个注解只能在类上,会在整个session中有map的数据
+     *  作用:
+     *      用于多次执行控制器方法间的参数共享
+     *  属性:
+     *      value: 用于指定存入的属性名称
+     *      type: 用于指定存入的数据类型
+     *
+     */
+    @RequestMapping("/testSessionAttributes")
+    public String testSessionAttributes(ModelMap modelMap) {
+        System.out.println("testSessionAttributes...");
+        //底层会存储到request域对象中
+        modelMap.addAttribute("msg","model的msg");
+        return "success";
+    }
+
+    @RequestMapping("/getSessionAttributes")
+    public String getSessionAttributes(ModelMap modelMap) {
+        System.out.println("getSessionAttributes....");
+        String msg = (String) modelMap.get("msg");
+        System.out.println("取出SessionAttributes中存放的msg的值:" + msg);
+        return "success";
+    }
+
+    /**
+     * 清除session域中的值
+     * @param status
+     * @return
+     */
+    @RequestMapping("/deleteSessionAttributes")
+    public String deleteSessionAttributes(SessionStatus status) {
+        System.out.println("deleteSessionAttributes....");
+        status.setComplete();
         return "success";
     }
 }
