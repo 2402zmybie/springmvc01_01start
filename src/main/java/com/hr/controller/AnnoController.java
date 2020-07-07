@@ -28,4 +28,10 @@ public class AnnoController {
         System.out.println(str);   //username=aa&age=122
         return "success";
     }
+
+    @GetMapping("/testPathVariable/{id}")
+    public String testPathVariable(@PathVariable("id") String id) {
+        System.out.println("PathVariable......" + id);   //username=aa&age=122
+        return "success";
+    }
 }

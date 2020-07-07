@@ -25,6 +25,12 @@
         <input type="submit" value="提交RequestBody">
     </form>
 
+    <br/>
+    <br/>
+    <br/>
+    <a href="anno/testPathVariable/1">testPathVariable</a>
+
+
 
 </body>
 </html>
