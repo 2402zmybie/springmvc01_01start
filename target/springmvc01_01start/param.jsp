@@ -32,7 +32,7 @@
     <h2>自定义类型转换器</h2>
     <form action="param/saveUser" method="post">
         用户姓名: <input type="text" name="uname"><br/>
-        用户密码: <input type="text" name="uage"><br/>
+        用户年龄: <input type="text" name="uage"><br/>
         用户生日: <input type="text" name="date"><br/>
         <input type="submit" value="提交">
     </form>
