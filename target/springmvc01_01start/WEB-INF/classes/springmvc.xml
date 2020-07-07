@@ -29,7 +29,7 @@
         </property>
     </bean>
 
-    <!--开启SpringMVC框架注解的支持-->
+    <!--开启SpringMVC框架注解的支持, 加入配置的自定义类型转换器-->
     <mvc:annotation-driven conversion-service="conversionServiceFactoryBean"/>
 
 </beans>

@@ -4,8 +4,14 @@ import com.hr.domain.Account;
 import com.hr.domain.AccountOfListOrMap;
 import com.hr.domain.User;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  * 请求参数绑定
@@ -48,6 +54,23 @@ public class ParamController {
     @PostMapping("/saveUser")
     public String saveUser(User user) {
         System.out.println(user);
+        return "success";
+    }
+
+    /**
+     * 原生API演示
+     * @return
+     */
+    @GetMapping("/testServlet")
+    public String testServlet(HttpServletRequest request, HttpServletResponse response) {
+
+        HttpSession session = request.getSession();
+        System.out.println(session);
+
+        ServletContext servletContext = session.getServletContext();
+        System.out.println(servletContext);
+
+        System.out.println(response);
         return "success";
     }
 }
